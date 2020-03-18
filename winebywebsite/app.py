@@ -1,20 +1,20 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect 
 from datetime import datetime
 import pandas as pd 
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-	return render_template('index.html')
+#@app.route('/')
+#def index():
+#	return render_template('index.html')
 
-@app.route('/contactform', methods = ['POST'])
-def getvalue():
-	firstName = request_form['fname']
-	lastName = request_form['lname']
-	email = request_form['email']
-	storerec = request.form['store']
-	age = request.form['age']
+@app.route('/signup', methods = ['POST'])
+def signup():
+	firstName = request.form.get('fname')
+	lastName = request.form.get('lname')
+	email = request.form.get('email')
+	storerec = request.form.get('store')
+	age = request.form.get('age')
 	now = datetime.now()
 
 	d2 = pd.read_csv('customerlist.csv', index_col = 'Unnamed: 0')
